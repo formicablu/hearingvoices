@@ -8,6 +8,7 @@
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
     <link href='https://fonts.googleapis.com/css?family=Ultra|Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
     <title>Hearing Voices</title>
     <style>
       body{
@@ -24,6 +25,10 @@
         vertical-align:middle;
         font-family:"Ultra", serif;
         font-size:28px;
+      }
+      
+      header .share{
+        float:right;
       }
       
       footer{
@@ -52,7 +57,7 @@
       $(function(){
         resize();
         $(window).resize(resize);
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([49.72, 5.45], 3);
         var layer = new L.StamenTileLayer("toner-lite");
         layer.addTo(map);
 
@@ -64,7 +69,8 @@
     <header>
       <span class="title">Hearing Voices</span>
       <span class="timeline"></span>
-      <span class="share"></span>
+      <span class="views"></span>
+      <span class="share"><i class="fa fa-fw fa-facebook"></i><i class="fa fa-fw fa-twitter"></i></span>
     </header>
     <main>
        <div id="map"></div>
