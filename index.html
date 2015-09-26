@@ -1,2 +1,48 @@
 <html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.2/tabletop.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+    <title>Hearing Voices</title>
+    <script>
+      var page_url = ""; 
+    
+      function refresh(){
+        Tabletop.init( { 
+          key: page_url,
+          callback: function(data, tabletop) { 
+            console.log(data); 
+          },
+          simpleSheet: true 
+        });
+      }
+      
+      function resize(){
+        $("#map").height($(window).height()-$("footer").height()-$(header).height());
+      }
+    
+      $(function(){
+        resize();
+        $(window).resize(resize);
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        var layer = new L.StamenTileLayer("toner");
+        layer.addTo(map);
+
+      });
+    </script>
+  </head>
+  <body>
+    <hdeader>
+      <span class="title">Hearing Voices"</span>
+      <span class="timeline"></span>
+      <span class="share"></span>
+    </hdeader>
+    <main>
+       <div id="map"></div>
+    </main>
+    <footer></footer>
+  </body>
 </html>
