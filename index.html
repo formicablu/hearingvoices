@@ -61,14 +61,14 @@
         $("#map").height($(window).height()-$("footer").height()-$("header").height());
       }
     
+      $(window).resize(resize);
+      
       $(function(){
         resize();
-        $(window).resize(resize);
         var map = L.map('map').setView([49.72, 5.45], 3);
+        var hash = L.hash(map);
         var layer = new L.StamenTileLayer("toner-lite");
         layer.addTo(map);
-
-        var hash = L.hash(map);
       });
     </script>
   </head>
