@@ -39,8 +39,7 @@
       }
       
       .views{
-        margin-left:auto;
-        margin-right:auto;
+        margin-left:500px;
         display:inline-block;
       }
       
@@ -101,6 +100,15 @@
     
       $(window).resize(resize);
       
+      $("#cases").on("click", function(){
+        $("#techs").hide(100);
+        $("#cases").show(100);
+      });
+      $("#techs").on("click", function(){
+        $("#cases").hide(100);
+        $("#techs").show(100);
+      });
+      
       $(function(){
         resize();
         var map = L.map('map').setView([49.72, 5.45], 3);
@@ -114,7 +122,7 @@
   <body>
     <header>
       <span class="title">Hearing Voices</span>
-      <span class="views"><a href="">Cases and Regulations</a> | <a href="">Technologies</a></span>
+      <span class="views"><a id="cases">Cases and Regulations</a> | <a id="techs">Technologies</a></span>
       <span class="share"><i class="fa fa-fw fa-facebook"></i><i class="fa fa-fw fa-twitter"></i></span>
     </header>
     <main>
