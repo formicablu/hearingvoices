@@ -106,8 +106,8 @@
         $("#c_main").show();
       });
       $("#techs").click(function(){
-        $("#c_main").hide();
         $("#t_main").show();
+        $("#c_main").hide();
       });
       
       $(function(){
@@ -117,6 +117,7 @@
         var layer = new L.StamenTileLayer("toner-lite");
         layer.addTo(map);
         refresh(map);
+        $("#t_main").hide();
       });
     </script>
   </head>
