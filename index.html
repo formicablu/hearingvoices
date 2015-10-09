@@ -94,8 +94,10 @@
       }
       
       function resize(){
-        $("main").height($(window).height()-$("footer").height()-$("header").height());
-        $("#map").height($(window).height()-$("footer").height()-$("header").height());
+        var mainh = $(window).height()-$("footer").height()-$("header").height();
+        $("main").height(mainh);
+        
+        $("#map").height(mainh);
         $("#map").width($(window).width()-500);
       }
     
