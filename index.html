@@ -55,12 +55,20 @@
       
     </style>
     <script>
-      var regulations = "https://docs.google.com/spreadsheets/d/1qI-z_2_OxWfh_v0JQNt73L-T1pXltZuDUCKZFmFEwAA/pubhtml"; 
-      var technologies = "https://docs.google.com/spreadsheets/d/1qI-z_2_OxWfh_v0JQNt73L-T1pXltZuDUCKZFmFEwAA/pubhtml"; 
+      var regulations = "https://docs.google.com/spreadsheets/d/1htMoJdNgvXI9mmHQtWrUrhdyaJbAo_CGlUBiemO2PY0/pubhtml"; 
+      var technologies = "https://docs.google.com/spreadsheets/d/18t3TbyL8h4skricrKyjEOwBrm1WTsnnKCrYb_O87h4o/pubhtml"; 
     
-      function refresh(){
+      function refresh(map){
         Tabletop.init( { 
-          key: page_url,
+          key: regulations,
+          callback: function(data, tabletop) { 
+            console.log(data); 
+          },
+          simpleSheet: true 
+        });
+        
+        Tabletop.init( { 
+          key: technologies,
           callback: function(data, tabletop) { 
             console.log(data); 
           },
@@ -81,6 +89,7 @@
         var hash = L.hash(map);
         var layer = new L.StamenTileLayer("toner-lite");
         layer.addTo(map);
+        refresh(map);
       });
     </script>
   </head>
