@@ -43,9 +43,18 @@
         background-color:black;
         color:white;
       }
+      #map{
+        float:left;
+      }
+      #content{
+        float:right;
+        width:250px;
+      }
+      
     </style>
     <script>
-      var page_url = "https://docs.google.com/spreadsheets/d/1qI-z_2_OxWfh_v0JQNt73L-T1pXltZuDUCKZFmFEwAA/pubhtml"; 
+      var regulations = "https://docs.google.com/spreadsheets/d/1qI-z_2_OxWfh_v0JQNt73L-T1pXltZuDUCKZFmFEwAA/pubhtml"; 
+      var technologies = "https://docs.google.com/spreadsheets/d/1qI-z_2_OxWfh_v0JQNt73L-T1pXltZuDUCKZFmFEwAA/pubhtml"; 
     
       function refresh(){
         Tabletop.init( { 
@@ -59,6 +68,7 @@
       
       function resize(){
         $("#map").height($(window).height()-$("footer").height()-$("header").height());
+        $("#map").width($(window).width()-250);
       }
     
       $(window).resize(resize);
@@ -81,6 +91,7 @@
     </header>
     <main>
        <div id="map"></div>
+       <div id="content"></div>
     </main>
     <footer></footer>
   </body>
