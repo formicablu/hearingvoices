@@ -94,6 +94,7 @@
       }
       
       function resize(){
+        $("main").height($(window).height()-$("footer").height()-$("header").height());
         $("#map").height($(window).height()-$("footer").height()-$("header").height());
         $("#map").width($(window).width()-500);
       }
@@ -101,12 +102,12 @@
       $(window).resize(resize);
       
       $("#cases").click(function(){
-        $("#techs").hide(100);
-        $("#cases").show(100);
+        $("#t_main").hide(100);
+        $("#c_main").show(100);
       });
       $("#techs").click(function(){
-        $("#cases").hide(100);
-        $("#techs").show(100);
+        $("#c_main").hide(100);
+        $("#t_main").show(100);
       });
       
       $(function(){
@@ -125,9 +126,11 @@
       <span class="views"><a id="cases"  href="#">Cases and Regulations</a> | <a id="techs" href="#">Technologies</a></span>
       <span class="share"><i class="fa fa-fw fa-facebook"></i><i class="fa fa-fw fa-twitter"></i></span>
     </header>
-    <main>
+    <main id="c_main">
        <div id="map"></div>
        <div id="content"></div>
+    </main>
+    <main id="t_main">
     </main>
     <footer></footer>
   </body>
