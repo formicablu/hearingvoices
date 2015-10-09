@@ -57,6 +57,7 @@
     <script>
       var regulations = "https://docs.google.com/spreadsheets/d/1htMoJdNgvXI9mmHQtWrUrhdyaJbAo_CGlUBiemO2PY0/pubhtml"; 
       var technologies = "https://docs.google.com/spreadsheets/d/18t3TbyL8h4skricrKyjEOwBrm1WTsnnKCrYb_O87h4o/pubhtml"; 
+      var cases = "https://docs.google.com/spreadsheets/d/1h41jJZea9-H_5VxdqYXgNHLV_MwN0OvBYccCkQ6sLWE/pubhtml";
     
       function refresh(map){
         Tabletop.init( { 
@@ -69,6 +70,14 @@
         
         Tabletop.init( { 
           key: technologies,
+          callback: function(data, tabletop) { 
+            console.log(data); 
+          },
+          simpleSheet: true 
+        });
+        
+        Tabletop.init( { 
+          key: cases,
           callback: function(data, tabletop) { 
             console.log(data); 
           },
