@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+    <script src="https://rawgithub.com/jseppi/Leaflet.MakiMarkers/master/Leaflet.MakiMarkers.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
     <link href='https://fonts.googleapis.com/css?family=Ultra|Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
@@ -64,12 +65,26 @@
     </style>
     <script>
       var cases = "https://docs.google.com/spreadsheets/d/1oraOpPlglr0Uon5UOpEz5Gr6sNkqX6qmBHGziZR-YNE/pubhtml";
+
+      var cases_taken = {};
+
+      var icons = {};
+      icons["justice miscarriage"] = L.MakiMarkers.icon({icon: "town-hall", color: "#f00", size: "l"});
+      icons["success/interesting story"] = L.MakiMarkers.icon({icon: "town-hall", color: "#0f0", size: "m"});
+      icons["controversial case"] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "s"});
     
       function refresh(map){
         Tabletop.init( { 
           key: cases,
           callback: function(data, tabletop) { 
             console.log(data); 
+            cases_taken = data;
+            for (var i in data){
+              var el = data[i];
+              var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"]]});
+              m.options.title = i;
+              m.addTo(map);
+            }
           },
           simpleSheet: true 
         });
