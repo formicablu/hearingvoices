@@ -96,7 +96,9 @@
       
       function onClick(){
         var el = this;
-        console.log(el);
+        var id = el.options.title;
+        var c = cases_taken[id];
+        console.log(c);
       }
       
       function resize(){
