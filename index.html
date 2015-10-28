@@ -99,6 +99,8 @@
         var id = el.options.title;
         var c = cases_taken[id];
         console.log(c);
+        
+        $("#case_title").text(c["nome del caso"]);
       }
       
       function resize(){
@@ -139,7 +141,10 @@
     </header>
     <main id="c_main">
        <div id="map"></div>
-       <div id="content"></div>
+       <div id="content">
+         <h2 id="case_title"></h2>
+         <p id="case_content"></p>
+       </div>
     </main>
     <main id="t_main">
     </main>
