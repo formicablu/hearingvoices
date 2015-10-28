@@ -82,10 +82,12 @@
             cases_taken = data;
             for (var i in data){
               var el = data[i];
-              var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"]]});
-              m.options.title = i;
-              m.addTo(map);
-              m.on('click', onClick);
+              if(el.lat && el.lon){
+                var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"]]});
+                m.options.title = i;
+                m.addTo(map);
+                m.on('click', onClick);
+              }
             }
           },
           simpleSheet: true 
