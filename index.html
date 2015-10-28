@@ -85,10 +85,16 @@
               var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"]]});
               m.options.title = i;
               m.addTo(map);
+              m.on('click', onClick);
             }
           },
           simpleSheet: true 
         });
+      }
+      
+      function onClick(){
+        var el = this;
+        console.log(el);
       }
       
       function resize(){
