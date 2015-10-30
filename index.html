@@ -102,6 +102,8 @@
         console.log(c);
         
         $("#case_title").text(c["name of the case"]);
+        $("#case_content").text(c["description"]);
+        $("#case_defendant").text(c["defendant"]);
       }
       
       function resize(){
@@ -145,6 +147,7 @@
        <div id="content">
          <h2 id="case_title"></h2>
          <p id="case_content"></p>
+         <p><i class="fa fa-fw fa-user"></i><span id="case_defendant"></span></p>
        </div>
     </main>
     <main id="t_main">
