@@ -112,6 +112,8 @@
         $("#case_defendant").text(c["defendant"]);
         $("#case_experts").text(c["experts/people involved"]);
         $("#case_forensic").text(c["forensic issue"]);
+        $("#case_country").text(c["country"]);
+        $("#case_nature").text(c["nature of the case"]);
       }
       
       function resize(){
@@ -156,10 +158,12 @@
        <div id="map"></div>
        <div id="content">
          <h2 id="case_title"></h2>
+         <p><small><span id="case_nature"></span></small></p>
          <p id="case_content"></p>
          <p><i class="fa fa-fw fa-user"></i><span id="case_defendant"></span></p>
          <p><i class="fa fa-fw fa-institution"></i><span id="case_experts"></span></p>
          <p><i class="fa fa-fw fa-gavel"></i><span id="case_forensic"></span></p>
+         <p><i class="fa fa-fw fa-globe"></i><span id="case_country"></span></p>
        </div>
     </main>
     <main id="t_main">
