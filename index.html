@@ -110,6 +110,8 @@
         $("#case_title").text(c["name of the case"]);
         $("#case_content").text(c["description"]);
         $("#case_defendant").text(c["defendant"]);
+        $("#case_experts").text(c["experts/people involved"]);
+        $("#case_forensic").text(c["forensic issue"]);
       }
       
       function resize(){
@@ -156,6 +158,8 @@
          <h2 id="case_title"></h2>
          <p id="case_content"></p>
          <p><i class="fa fa-fw fa-user"></i><span id="case_defendant"></span></p>
+         <p><i class="fa fa-fw fa-institution"></i><span id="case_experts"></span></p>
+         <p><i class="fa fa-fw fa-gavel"></i><span id="case_forensic"></span></p>
        </div>
     </main>
     <main id="t_main">
