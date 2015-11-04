@@ -10,6 +10,10 @@
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
     <link href='https://fonts.googleapis.com/css?family=Ultra|Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+
     <title>Hearing Voices</title>
     <style>
       body{
@@ -81,7 +85,7 @@
       icons["controversial case"] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "s"});
       icons[""] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "s"});
     
-      function refresh(map){
+      function refresh(markers){
         Tabletop.init( { 
           key: cases,
           callback: function(data, tabletop) { 
@@ -92,7 +96,7 @@
               if(el.lat && el.lon){
                 var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"]]});
                 m.options.title = i;
-                m.addTo(map);
+                m.addTo(markers);
                 m.on('click', onClick);
               }
             }
@@ -141,9 +145,10 @@
         resize();
         var map = L.map('map').setView([49.72, 5.45], 2);
         var hash = L.hash(map);
+        var markers = new L.MarkerClusterGroup();
         var layer = new L.StamenTileLayer("toner-lite");
-        layer.addTo(map);
-        refresh(map);
+        layer.addTo(markers);
+        refresh(markers);
         $("#t_main").hide();
       });
     </script>
