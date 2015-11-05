@@ -153,6 +153,7 @@
         $("#techs").click(function(){
           $("#t_main").show();
           $("#c_main").hide();
+          document.getElementById('t_main_frame').contentWindow.location.reload();
         });
       });
     </script>
@@ -176,7 +177,7 @@
        </div>
     </main>
     <main id="t_main">
-      <iframe width="100%" height="800" src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1c627f7OaXfR1BkPyeIfYFbjaSHcc9eWuVu6qjY7XhS8&font=Default&lang=en&initial_zoom=1&height=800"></iframe>
+      <iframe id="t_main_frame" border="0" width="100%" height="800" src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1c627f7OaXfR1BkPyeIfYFbjaSHcc9eWuVu6qjY7XhS8&font=Default&lang=en&initial_zoom=1&height=800"></iframe>
     </main>
     <footer></footer>
   </body>
