@@ -147,8 +147,9 @@
         var hash = L.hash(map);
         var markers = new L.MarkerClusterGroup();
         var layer = new L.StamenTileLayer("toner-lite");
-        layer.addTo(markers);
+        layer.addTo(map);
         refresh(markers);
+        markers.addTo(map);
         $("#t_main").hide();
       });
     </script>
