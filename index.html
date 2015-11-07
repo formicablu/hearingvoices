@@ -150,11 +150,14 @@
         $("#cases").click(function(){
           $("#t_main").hide();
           $("#c_main").show();
+          window.location.hash = "map";
         });
         $("#techs").click(function(){
           $("#t_main").show();
           $("#c_main").hide();
-          document.getElementById('t_main_frame').location.reload();
+          window.location.hash = "tech";
+          var iframe = document.getElementById('t_main_frame');
+          iframe.src = iframe.src;
         });
       });
     </script>
