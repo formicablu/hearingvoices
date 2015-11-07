@@ -113,6 +113,56 @@
         var c = cases_taken[id];
         console.log(c);
         
+        if(c["name of the case"]!="")
+          $("#case_title").show();
+        else
+          $("#case_title").hide();
+          
+        if(c["description"]!="")
+          $("#case_content").show();
+        else
+          $("#case_content").hide();
+          
+        if(c["description"]!="")
+          $("#case_content").show();
+        else
+          $("#case_content").hide();
+        
+        if(c["description"]!="")
+          $("#case_content").show();
+        else
+          $("#case_content").hide();
+        
+        if(c["experts/people involved"]!="")
+          $("#case_experts").show();
+        else
+          $("#case_experts").hide();
+        
+        if(c["forensic issue"]!="")
+          $("#case_forensic").show();
+        else
+          $("#case_forensic").hide();
+        
+        if(c["country"]!="")
+          $("#case_country").show();
+        else
+          $("#case_country").hide();
+        
+        if(c["nature of the case"]!="")
+          $("#case_nature").show();
+        else
+          $("#case_nature").hide();
+        
+        if(c["picture"]!="")
+          $("#case_pic").show();
+        else
+          $("#case_pic").hide();
+        
+        if(c["recordings"]!="")
+          $("#case_audio").show();
+        else
+          $("#case_audio").hide();
+        
         $("#case_title").text(c["name of the case"]);
         $("#case_content").text(c["description"]);
         $("#case_defendant").text(c["defendant"]);
