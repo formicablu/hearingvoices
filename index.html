@@ -200,6 +200,10 @@
       
       
       $(function(){
+        var click_tech = false;
+        if (window.location.hash.split("#").length > 1)
+          if (window.location.hash.split("#")[1] == "tech")
+            click_tech = true;
         resize();
         var map = L.map('map', {minZoom:2, maxZoom:7}).setView([49.72, 5.45], 2);
         var hash = L.hash(map);
@@ -223,6 +227,10 @@
           var iframe = document.getElementById('t_main_frame');
           iframe.src = iframe.src;
         });
+        
+        
+        if (click_tech)
+          $("#techs").click();
       });
     </script>
   </head>
