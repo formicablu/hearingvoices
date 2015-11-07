@@ -136,7 +136,7 @@
       
       $(function(){
         resize();
-        var map = L.map('map').setView([49.72, 5.45], 2);
+        var map = L.map('map', {minZoom:2, maxZoom:7}).setView([49.72, 5.45], 2);
         var hash = L.hash(map);
         var markers = new L.MarkerClusterGroup();
         var layer = new L.StamenTileLayer("toner-lite");
