@@ -170,8 +170,10 @@
         $("#case_forensic").text(c["forensic issue"]);
         $("#case_country").text(c["country"]);
         $("#case_nature").text(c["nature of the case"]);
+        $("#case_year").attr("src", c["year of events"]);
         $("#case_pic").attr("src", c["picture"]);
         $("#case_audio").attr("src", c["recordings"]);
+        $("#case_year").attr("src", c["year of events"]);
       }
       
       function resize(){
@@ -232,6 +234,7 @@
          <p><i class="fa fa-fw fa-institution"></i><span id="case_experts"></span></p>
          <p><i class="fa fa-fw fa-gavel"></i><span id="case_forensic"></span></p>
          <p><i class="fa fa-fw fa-globe"></i><span id="case_country"></span></p>
+         <p><i class="fa fa-fw fa-calendar"></i><span id="case_year"></span></p>
        </div>
     </main>
     <main id="t_main">
