@@ -52,6 +52,7 @@
       
       .views a{
         color:white;
+        cursor:pointer;
       }
       footer{
         text-align:center;
@@ -153,7 +154,7 @@
         $("#techs").click(function(){
           $("#t_main").show();
           $("#c_main").hide();
-          document.getElementById('t_main_frame').contentWindow.location.reload();
+          document.getElementById('t_main_frame').location.reload();
         });
       });
     </script>
