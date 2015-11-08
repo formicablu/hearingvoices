@@ -121,6 +121,7 @@
       function onClick(){
         var el = this;
         var id = el.options.title;
+        $(".hideable").show();
         var c = cases_taken[id];
         console.log(c);
         
@@ -213,6 +214,7 @@
         refresh(markers);
         markers.addTo(map);
         $("#t_main").hide();
+        $(".hideable").hide();
         
           
         $("#cases").click(function(){
@@ -245,16 +247,18 @@ Se incluirán más casos en el mapa en las próximas semanas.</span>
     <main id="c_main">
        <div id="map"></div>
        <div id="content">
-         <h2 id="case_title"></h2>
-         <p><small><span id="case_nature"></span></small></p>
-         <img id="case_pic" style="width:95%" src="">
-         <audio controls id="case_audio" src="" type="audio/mpeg"></audio>
-         <p id="case_content"></p>
-         <p><i class="fa fa-fw fa-user"></i><span id="case_defendant"></span></p>
-         <p><i class="fa fa-fw fa-institution"></i><span id="case_experts"></span></p>
-         <p><i class="fa fa-fw fa-gavel"></i><span id="case_forensic"></span></p>
-         <p><i class="fa fa-fw fa-globe"></i><span id="case_country"></span></p>
-         <p><i class="fa fa-fw fa-calendar"></i><span id="case_year"></span></p>
+         <div class="hideable">
+           <h2 id="case_title"></h2>
+           <p><small><span id="case_nature"></span></small></p>
+           <img id="case_pic" style="width:95%" src="">
+           <audio controls id="case_audio" src="" type="audio/mpeg"></audio>
+           <p id="case_content"></p>
+           <p><i class="fa fa-fw fa-user"></i><span id="case_defendant"></span></p>
+           <p><i class="fa fa-fw fa-institution"></i><span id="case_experts"></span></p>
+           <p><i class="fa fa-fw fa-gavel"></i><span id="case_forensic"></span></p>
+           <p><i class="fa fa-fw fa-globe"></i><span id="case_country"></span></p>
+           <p><i class="fa fa-fw fa-calendar"></i><span id="case_year"></span></p>
+          </div>
        </div>
     </main>
     <main id="t_main">
