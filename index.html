@@ -125,6 +125,7 @@
       function onClick(){
         var el = this;
         var id = el.options.title;
+        ga('send', 'pageview', 'id');
         $(".hideable").show();
         var c = cases_taken[id];
         console.log(c);
@@ -225,11 +226,13 @@
         $("#cases").click(function(){
           $("#t_main").hide();
           $("#c_main").show();
+          ga('send', 'pageview', 'map');
           window.location.hash = "map";
         });
         $("#techs").click(function(){
           $("#t_main").show();
-          $("#c_main").hide();
+          $("#c_main").hide();3
+          ga('send', 'pageview', 'techs');
           window.location.hash = "tech";
           var iframe = document.getElementById('t_main_frame');
           iframe.src = iframe.src;
