@@ -98,8 +98,8 @@
 
       var icons = {};
       icons["justice miscarriage"] = L.MakiMarkers.icon({icon: "town-hall", color: "#f00", size: "l"});
-      icons["Case of interest"] = L.MakiMarkers.icon({icon: "town-hall", color: "#0f0", size: "s"});
-      icons["Controversial case"] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "m"});
+      icons["case of interest"] = L.MakiMarkers.icon({icon: "town-hall", color: "#0f0", size: "s"});
+      icons["controversial case"] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "m"});
       icons[""] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "s"});
     
       function refresh(markers){
@@ -111,7 +111,7 @@
             for (var i in data){
               var el = data[i];
               if(el.lat && el.lon){
-                var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"].trim()]});
+                var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"].toLowerCase().trim()]});
                 m.options.title = i;
                 m.addTo(markers);
                 m.on('click', onClick);
