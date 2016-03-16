@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.2/tabletop.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+    <script src="https://rawgithub.com/jseppi/Leaflet.MakiMarkers/master/Leaflet.MakiMarkers.js"></script>
+    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+    <link href='https://fonts.googleapis.com/css?family=Ultra|Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-41808001-4', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+
+    <title>Hearing Voices</title>
+    <style>
+      body{
+        margin:0;
+        font-family:"Roboto Slab", serif;
+        background-color:black;
+      }
+      
+      header{
+        height:50px;
+        background-color:black;
+        color:white;
+        padding-left:5px;
+        padding-right:5px;
+      }
+      
+      header span{
+        line-height:50px;
+        vertical-align:middle;
+      }
+      
+      header .title{
+        font-family:"Ultra", serif;
+        font-size:28px;
+      }
+      
+      header .share{
+        float:right;
+      }
+      
+      .views{
+        margin-left:500px;
+        display:inline-block;
+      }
+      
+      .views *{
+        color:white;
+        cursor:pointer;
+      }
+      footer{
+        text-align:center;
+        background-color:black;
+        color:white;
+      }
+      #map{
+        float:left;
+      }
+      #content{
+        float:right;
+        width:500px;
+        background-color:black;
+        color:white;
+        overflow: auto;
+        height: 100%;
+      }
+      #content>*{
+        margin-left:5px;
+        margin-right:5px;
+      }
+      
+      a, a:hover, a:active, a:visited{
+        color:white;
+        text-decoration:underline;
+      }
+    </style>
+    <script>
+      var cases = "https://docs.google.com/spreadsheets/d/10MukQqcVuHFXf2grVXgftkncSA7QzoI_bl-FUPJ6GVE/pubhtml";
+
+      var cases_taken = {};
+
+      var icons = {};
+      icons["errore giudiziario"] = L.MakiMarkers.icon({icon: "town-hall", color: "#f00", size: "l"});
+      icons["caso interessante"] = L.MakiMarkers.icon({icon: "town-hall", color: "#0f0", size: "s"});
+      icons["caso controverso"] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "m"});
+      icons[""] = L.MakiMarkers.icon({icon: "town-hall", color: "#ff0", size: "s"});
+    
+      function refresh(markers){
+        Tabletop.init( { 
+          key: cases,
+          callback: function(data, tabletop) { 
+            console.log(data); 
+            cases_taken = data;
+            for (var i in data){
+              var el = data[i];
+              if(el.lat && el.lon){
+                var m = L.marker([el.lat, el.lon], {icon: icons[el["nature of the case"].toLowerCase().trim()]});
+                m.options.title = i;
+                m.addTo(markers);
+                m.on('click', onClick);
+              }
+            }
+          },
+          simpleSheet: true 
+        });
+      }
+      
+      function onClick(){
+        var el = this;
+        var id = el.options.title;
+        ga('send', 'pageview', "case_"+id);
+        $(".hideable").show();
+        var c = cases_taken[id];
+        console.log(c);
+        
+        if(c["name of the case"]!="")
+          $("#case_title").show();
+        else
+          $("#case_title").hide();
+          
+        if(c["description"]!="")
+          $("#case_content").show();
+        else
+          $("#case_content").hide();
+          
+        if(c["description"]!="")
+          $("#case_content").show();
+        else
+          $("#case_content").hide();
+        
+        if(c["description"]!="")
+          $("#case_content").show();
+        else
+          $("#case_content").hide();
+        
+        if(c["experts/people involved"]!="")
+          $("#case_experts").show();
+        else
+          $("#case_experts").hide();
+        
+        if(c["forensic issue"]!="")
+          $("#case_forensic").show();
+        else
+          $("#case_forensic").hide();
+        
+        if(c["country"]!="")
+          $("#case_country").show();
+        else
+          $("#case_country").hide();
+        
+        if(c["nature of the case"]!="")
+          $("#case_nature").show();
+        else
+          $("#case_nature").hide();
+        
+        if(c["picture"]!="")
+          $("#case_pic").show();
+        else
+          $("#case_pic").hide();
+        
+        if(c["recordings"]!="")
+          $("#case_audio").show();
+        else
+          $("#case_audio").hide();
+        
+        $("#case_title").text(c["name of the case"]);
+        $("#case_content").text(c["description"]);
+        $("#case_defendant").text(c["defendant"]);
+        $("#case_experts").text(c["experts/people involved"]);
+        $("#case_forensic").text(c["forensic issue"]);
+        $("#case_country").text(c["country"]);
+        $("#case_nature").text(c["nature of the case"]);
+        $("#case_year").text(c["year of events"]);
+        //$("#case_pic_credits").text(c["picture credits"]);
+        $("#case_pic").attr("src", c["picture"]);
+        $("#case_audio").attr("src", c["recordings"]);
+      }
+      
+      function resize(){
+        var mainh = $(window).height()-$("footer").height()-$("header").height();
+        $("main").height(mainh);
+        
+        
+        $("#map").height(mainh);
+        $("#content").height(mainh);
+        $("#map").width($(window).width()-500);
+      }
+    
+      $(window).resize(resize);
+      
+      
+      $(function(){
+        var click_tech = false;
+        if (window.location.hash.split("#").length > 1)
+          if (window.location.hash.split("#")[1] == "tech")
+            click_tech = true;
+        resize();
+        var map = L.map('map', {minZoom:2, maxZoom:7}).setView([49.72, 5.45], 2);
+        var hash = L.hash(map);
+        var markers = new L.MarkerClusterGroup();
+        var layer = new L.StamenTileLayer("toner-lite");
+        layer.addTo(map);
+        refresh(markers);
+        markers.addTo(map);
+        $("#t_main").hide();
+        $(".hideable").hide();
+        
+          
+        $("#cases").click(function(){
+          $("#t_main").hide();
+          $("#c_main").show();
+          ga('send', 'pageview', 'map');
+          window.location.hash = "map";
+        });
+        $("#techs").click(function(){
+          $("#t_main").show();
+          $("#c_main").hide();3
+          ga('send', 'pageview', 'techs');
+          window.location.hash = "tech";
+          var iframe = document.getElementById('t_main_frame');
+          iframe.src = iframe.src;
+        });
+        
+        
+        if (click_tech)
+          $("#techs").click();
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <span class="title">Hearing Voices</span>
+      <span class="views"><span id="cases" href="#">Casi</span> | <span id="techs" href="#">Tecnologe e Regolamentazioni</span></span>
+      <span class="share"><i class="fa fa-fw fa-facebook"></i><i class="fa fa-fw fa-twitter"></i></span>
+    </header>
+    <main id="c_main">
+       <div id="map"></div>
+       <div id="content">
+         <div class="info">Un progetto di giornalismo scientifico sulla scienza forenze a cura di Michele Catanzaro, Philipp Hummel, Elisabetta Tola e Astrid Viciano, con il supporto di  <a href="http://www.journalismfund.eu/hearingvoices" target="_blank">Journalism Fund</a>.
+Più casi saranno aggiunti nelle prossime settimane.</div>
+         <div class="hideable">
+           <h2 id="case_title"></h2>
+           <p><small><span id="case_nature"></span></small></p>
+           <img id="case_pic" style="width:95%" src="">
+           <!--<p>Credits: <span id="case_pic_creditst"></span></p>-->
+           <audio controls id="case_audio" src="" type="audio/mpeg"></audio>
+           <p id="case_content"></p>
+           <p><i class="fa fa-fw fa-user"></i><span id="case_defendant"></span></p>
+           <p><i class="fa fa-fw fa-institution"></i><span id="case_experts"></span></p>
+           <p><i class="fa fa-fw fa-gavel"></i><span id="case_forensic"></span></p>
+           <p><i class="fa fa-fw fa-globe"></i><span id="case_country"></span></p>
+           <p><i class="fa fa-fw fa-calendar"></i><span id="case_year"></span></p>
+          </div>
+       </div>
+    
+
+</main>
+    <main id="t_main">
+      <iframe id="t_main_frame" style="border: 0;" width="100%" height="800" src="http://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1BqgOSJpxFmSWK44xsD6va3rK6SHuyObTyKIclj2q3ek&font=Default&lang=en&initial_zoom=1&height=800"></iframe>
+    </main>
+    <footer></footer>
+  </body>
+</html>
