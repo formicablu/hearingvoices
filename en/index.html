@@ -227,17 +227,35 @@
         $("#cases").click(function(){
           $("#t_main").hide();
           $("#c_main").show();
+          $("#a_hide").hide();
           ga('send', 'pageview', 'map');
           window.location.hash = "map";
         });
         $("#techs").click(function(){
           $("#t_main").show();
-          $("#c_main").hide();3
+          $("#c_main").hide();
+          $("#a_hide").hide();
           ga('send', 'pageview', 'techs');
           window.location.hash = "tech";
           var iframe = document.getElementById('t_main_frame');
           iframe.src = iframe.src;
         });
+        
+        
+        $("#ijf").click(function(){
+          window.location = "http://journalismfund.eu/hearingvoices";
+        });
+        
+         $("#articles").click(function(){
+          $("#t_main").hide();
+          $("#c_main").hide();
+          $("#a_main").show();
+          ga('send', 'pageview', 'articles');
+          window.location.hash = "articles";
+          
+        });
+        
+        
         
         
         if (click_tech)
@@ -248,7 +266,12 @@
   <body>
     <header>
       <span class="title">Hearing Voices</span>
-      <span class="views"><span id="cases" href="#">Cases</span> | <span id="techs" href="#">Technologies and Regulations</span></span>
+      <span class="views">
+        <span id="cases" href="#">Cases</span> | 
+        <span id="techs" href="#">Technologies and Regulations</span> |
+        <span id="articles" href=#>Articles published in media outlets</span> | 
+        <span id="ijf" href="http://journalismfund.eu/hearingvoices"></span>
+      </span>
       <span class="share"><i class="fa fa-fw fa-facebook"></i><i class="fa fa-fw fa-twitter"></i></span>
     </header>
     <main id="c_main">
@@ -272,9 +295,21 @@ More cases will be included in the next weeks.</div>
        </div>
     
 
-</main>
+    </main>
     <main id="t_main">
       <iframe id="t_main_frame" style="border: 0;" width="100%" height="800" src="http://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1hbmM9LGR5PDOOhoDio7XnLta0IRrSCzb8iBYpgqGF14&font=Default&lang=en&initial_zoom=1&height=800"></iframe>
+    </main>
+    <main id="a_main">
+      <ul>
+        <li><a target="_blank" href="http://www.elperiodico.com/es/noticias/dominical/uso-las-pruebas-voz-los-tribunales-4664419">'¿Qué hay en una voz?</a> (ES) (November 11th, 2015 - elperiodico.com)</li>
+        <li><a target="_blank" href="http://www.elperiodico.cat/ca/noticias/dominical/lus-les-proves-veu-els-tribunals-4664419">'¿Què hi ha en una veu?'</a> (CAT) (November 11th, 2015 - elperiodico.com)</li>
+        <li><a target="_blank" href="https://magazin.spiegel.de/digital/?utm_source=spon&utm_campaign=centerpage#SP/2015/48/139881775">'Verdächtige Stimmen'</a> (DE) (November 19th, 2015 - SPIEGELONLINE)</li>
+        <li><a target="_blank" href="http://www.euroscientist.com/speech-forensics-when-hollywood-seldom-mirrors-real-life-court-cases/">'Speech forensics: when Hollywood seldom mirrors real-life court cases'</a> (December 16th, 2015 -Euroscientist)</li>
+        <li><a target="_blank" href="http://www.stuttgarter-zeitung.de/inhalt.forensische-phonetik-wenn-die-stimme-vor-gericht-versagt.87131bc1-60d0-465a-83ef-3e37c00b4d10.html">'Wenn die Stimme vor Gericht versagt'</a> (DE) (December 17th, 2015 - Stuttgarter Zeitung)</li>
+        <li><a target="_blank" href="http://www.nzz.ch/wissenschaft/technik/stimmen-vor-gericht-1.18677215">'Forensische Phonetik: Stimmen vor Gericht'</a> (DE) (January 14th, 2016 - Neue Zürcher Zeitung)</li>
+        <li><a target="_blank" href="http://inchieste.repubblica.it/it/repubblica/rep-it/2016/04/13/news/quando_la_giustizia_sbaglia_l_accento-135110861/?refresh_ce">Quando l'intercettazione è ambigua</a> (IT) - Le inchieste, La Repubblica, 13 April 2016</li>
+        <li><a target="_blank" href="#">Dentro una voce (IT)</a> - Le Scienze, 1 August 2016</li>
+      </ul>
     </main>
     <footer></footer>
   </body>
